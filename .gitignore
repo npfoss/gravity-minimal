@@ -1,3 +1,6 @@
+# browserified source
+public/app.js
+
 # Logs
 logs
 *.log
