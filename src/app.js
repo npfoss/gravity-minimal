@@ -6,6 +6,12 @@ const GravityProtocol = require('../../gravity-protocol'); // two ..s because it
 
 const gp = new GravityProtocol();
 
+
+gp.getNodeInfo()
+	.then(info => {
+		document.getElementById("info").innerHTML = JSON.stringify(info, null, '\t');
+	})
+
 document.getElementById("refresh").addEventListener("click", function(){
 	// another example to try: /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
 	gp.loadDirs(document.getElementById("pathinput").value)
