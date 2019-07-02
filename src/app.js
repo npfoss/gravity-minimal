@@ -21,3 +21,15 @@ document.getElementById("keygen").addEventListener("click", function(){
 document.getElementById("getkey").addEventListener("click", function(){
 	console.log(gp.getMasterKey());
 })
+
+document.getElementById("encdec").addEventListener("click", function(){
+	let m = document.getElementById("message").value;
+	console.log("message: " + m)
+	let c = gp.encrypt(gp.getMasterKey(), m);
+	console.log("ciphertext: ");
+	console.log(c)
+	let r = gp.decrypt(gp.getMasterKey(), c)
+	console.log("decrypted: ")
+	console.log(r)
+	console.log('matching? ' + (m === r))
+})
