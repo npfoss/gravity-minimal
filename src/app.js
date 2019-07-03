@@ -39,3 +39,14 @@ document.getElementById("encdec").addEventListener("click", function(){
 	console.log(r)
 	console.log('matching? ' + (m === r))
 })
+
+document.getElementById("contactbutton").addEventListener("click", function(){
+	gp.getContacts().then(contacts => {
+		document.getElementById("contacts").innerHTML = JSON.stringify(contacts, null, '\t');
+	})
+})
+
+document.getElementById("addsubscriber").addEventListener("click", function(){
+	let pubkey = document.getElementById("peerpubkey").value;
+	gp.addSubscriber(pubkey);
+})
