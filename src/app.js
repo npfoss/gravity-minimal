@@ -24,17 +24,17 @@ document.getElementById("refresh").addEventListener("click", function(){
 // 	gp.resetMasterKey();
 // })
 
-document.getElementById("getkey").addEventListener("click", function(){
-	console.log(gp.getMasterKey());
+document.getElementById("getkey").addEventListener("click", async function(){
+	console.log(await gp.getMasterKey());
 })
 
-document.getElementById("encdec").addEventListener("click", function(){
+document.getElementById("encdec").addEventListener("click", async function(){
 	let m = document.getElementById("message").value;
 	console.log("message: " + m)
-	let c = gp.encrypt(gp.getMasterKey(), m);
+	let c = await gp.encrypt(await gp.getMasterKey(), m);
 	console.log("ciphertext: ");
 	console.log(c)
-	let r = gp.decrypt(gp.getMasterKey(), c)
+	let r = await gp.decrypt(await gp.getMasterKey(), c)
 	console.log("decrypted: ")
 	console.log(r)
 	console.log('matching? ' + (m === r))
