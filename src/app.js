@@ -18,6 +18,10 @@ document.getElementById("refresh").addEventListener("click", function(){
 		.then(resp => {
 			document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '\t');
 		});
+	gp.getProfileHash()
+		.then(resp => {
+			document.getElementById("toplevelinfo").innerHTML = JSON.stringify(resp, null, '\t');
+		})
 });
 
 // document.getElementById("keygen").addEventListener("click", function(){
