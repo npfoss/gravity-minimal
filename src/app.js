@@ -20,9 +20,9 @@ document.getElementById("refresh").addEventListener("click", function(){
 		});
 });
 
-document.getElementById("keygen").addEventListener("click", function(){
-	gp.resetMasterKey();
-})
+// document.getElementById("keygen").addEventListener("click", function(){
+// 	gp.resetMasterKey();
+// })
 
 document.getElementById("getkey").addEventListener("click", function(){
 	console.log(gp.getMasterKey());
