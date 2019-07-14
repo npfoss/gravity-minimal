@@ -54,3 +54,8 @@ document.getElementById("addsubscriber").addEventListener("click", function(){
 	let pubkey = document.getElementById("peerpubkey").value;
 	gp.addSubscriber(pubkey);
 })
+
+document.getElementById("friendkey").addEventListener("click", async () => {
+	let key = await gp.testDecryptAllSubscribers('/ipfs/QmT7CYyij8rYaMnGGupkXkA7SqAC9i2jkbscda9MWATZyP');
+	console.log(key)
+})
