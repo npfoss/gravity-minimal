@@ -18,7 +18,7 @@ document.getElementById("refresh").addEventListener("click", function(){
 		.then(resp => {
 			document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '\t');
 		});
-	gp.getProfileHash()
+	gp.getMyProfileHash()
 		.then(resp => {
 			document.getElementById("toplevelinfo").innerHTML = JSON.stringify(resp, null, '\t');
 		})
@@ -56,6 +56,7 @@ document.getElementById("addsubscriber").addEventListener("click", function(){
 })
 
 document.getElementById("friendkey").addEventListener("click", async () => {
-	let key = await gp.testDecryptAllSubscribers('/ipfs/QmT7CYyij8rYaMnGGupkXkA7SqAC9i2jkbscda9MWATZyP');
+	let path = `/ipfs/${await gp.getProfileHash("doesn't matter yet :P")}/subscribers`
+	let key = await gp.testDecryptAllSubscribers(path);
 	console.log(key)
 })
