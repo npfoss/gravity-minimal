@@ -10,6 +10,7 @@ const gp = new GravityProtocol();
 gp.getNodeInfo()
 	.then(info => {
 		document.getElementById("info").innerHTML = JSON.stringify(info, null, '\t');
+		console.log('public key: ' + gp.toStandardPublicKeyFormat(info.publicKey));
 	})
 
 document.getElementById("refresh").addEventListener("click", function(){
@@ -60,3 +61,18 @@ document.getElementById("friendkey").addEventListener("click", async () => {
 	let key = await gp.testDecryptAllSubscribers(path);
 	console.log(key)
 })
+
+document.getElementById("creategroup").addEventListener("click", async () => {
+	let c = await gp.getContacts();
+	gp.createGroup(Object.keys(c)) // creates a group with all contacts
+		.then(res => {console.log(res)})
+})
+
+document.getElementById("setnick").addEventListener("click", async () => {
+	let groups = await gp.getGroupList();
+	console.log(await gp.getGroupInfo(groups[0]))
+	let nicks = {};
+	nicks[gp.toStandardPublicKeyFormat(document.getElementById("nickkey").value)] = document.getElementById("nickname").value;
+	await gp.setNicknames(nicks, groups[0])
+	console.log(await gp.getGroupInfo(groups[0]))
+});
