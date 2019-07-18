@@ -66,3 +66,13 @@ document.getElementById("creategroup").addEventListener("click", async () => {
 	gp.createGroup(Object.keys(c)) // creates a group with all contacts
 		.then(res => {console.log(res)})
 })
+
+document.getElementById("setnick").addEventListener("click", async () => {
+	let groups = await gp.getGroupList();
+	console.log(groups)
+	console.log(await getGroupInfo(groups[0]))
+	let nicks = {};
+	nicks[document.getElementById("nickkey").value] = document.getElementById("nickname").value;
+	await gp.setNicknames(nicks, groups[0])
+	console.log(await getGroupInfo(groups[0]))
+});
