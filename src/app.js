@@ -70,7 +70,6 @@ document.getElementById("creategroup").addEventListener("click", async () => {
 
 document.getElementById("setnick").addEventListener("click", async () => {
 	let groups = await gp.getGroupList();
-	console.log(groups)
 	console.log(await gp.getGroupInfo(groups[0]))
 	let nicks = {};
 	nicks[gp.toStandardPublicKeyFormat(document.getElementById("nickkey").value)] = document.getElementById("nickname").value;
