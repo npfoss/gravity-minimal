@@ -5,7 +5,7 @@ Minimal client for interacting with the Gravity social network from the browser.
 Source code is in `src/app.js`, `public/index.html`, and `public/app.css`.
 
 
-*NOTE*: for now, requires `gravity-protocol` in sibling directory because that isn't a stable npm package yet.
+*NOTE*: for now, requires [`gravity-protocol`](https://github.com/npfoss/gravity-protocol/) in sibling directory because that isn't a stable npm package yet.
 
 # install
 
