@@ -10,6 +10,7 @@ const gp = new GravityProtocol();
 gp.getNodeInfo()
 	.then(info => {
 		document.getElementById("info").innerHTML = JSON.stringify(info, null, '\t');
+		console.log('public key: ' + gp.toStandardPublicKeyFormat(info.publicKey));
 	})
 
 document.getElementById("refresh").addEventListener("click", function(){
@@ -72,7 +73,7 @@ document.getElementById("setnick").addEventListener("click", async () => {
 	console.log(groups)
 	console.log(await gp.getGroupInfo(groups[0]))
 	let nicks = {};
-	nicks[document.getElementById("nickkey").value] = document.getElementById("nickname").value;
+	nicks[gp.toStandardPublicKeyFormat(document.getElementById("nickkey").value)] = document.getElementById("nickname").value;
 	await gp.setNicknames(nicks, groups[0])
 	console.log(await gp.getGroupInfo(groups[0]))
 });
