@@ -60,3 +60,9 @@ document.getElementById("friendkey").addEventListener("click", async () => {
 	let key = await gp.testDecryptAllSubscribers(path);
 	console.log(key)
 })
+
+document.getElementById("creategroup").addEventListener("click", async () => {
+	let c = await gp.getContacts();
+	gp.createGroup(Object.keys(c)) // creates a group with all contacts
+		.then(res => {console.log(res)})
+})
