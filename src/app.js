@@ -76,3 +76,12 @@ document.getElementById("setnick").addEventListener("click", async () => {
 	await gp.setNicknames(nicks, groups[0])
 	console.log(await gp.getGroupInfo(groups[0]))
 });
+
+document.getElementById("setbio").addEventListener("click", async () => {
+	const group = document.getElementById("biogroupid").value;
+	console.log(await gp.getBio(group))
+	let bio = {};
+	bio[document.getElementById("biokey").value] = document.getElementById("bioval").value;
+	await gp.setBio(group, bio);
+	console.log(await gp.getBio(group))
+});
