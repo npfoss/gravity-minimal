@@ -57,7 +57,7 @@ document.getElementById("addsubscriber").addEventListener("click", function(){
 })
 
 document.getElementById("friendkey").addEventListener("click", async () => {
-	let path = `/ipfs/${await gp.getProfileHash("doesn't matter yet :P")}/subscribers`
+	let path = `/ipfs/QmRMtCEBe3t6nFfr4Ne9pqmQo4eVweuh9hv8NSoA59579m/subscribers`
 	let key = await gp.testDecryptAllSubscribers(path);
 	console.log(key)
 })
@@ -84,4 +84,29 @@ document.getElementById("setbio").addEventListener("click", async () => {
 	bio[document.getElementById("biokey").value] = document.getElementById("bioval").value;
 	await gp.setBio(group, bio);
 	console.log(await gp.getBio(group))
+});
+
+document.getElementById("publish").addEventListener("click", async () => {
+	await gp.publishProfile();
+});
+
+document.getElementById("lookup").addEventListener("click", async () => {
+	let hash = await gp.lookupProfileHash(document.getElementById("ipnskey").value);
+	document.getElementById("toplevelinfo").innerHTML = JSON.stringify(hash, null, '\t');
+	// gp.loadDirs(`/ipfs/${hash}`)
+	// 	.then(resp => {
+	// 		document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '\t');
+	// 	});
+});
+
+document.getElementById("connectpeer").addEventListener("click", async () => {
+	let addr = document.getElementById("peeraddr").value;
+	await gp.connectToAddr(addr);
+})
+
+document.getElementById("refreshpeers").addEventListener("click", async () => {
+	gp.getIpfsPeers()
+		.then(resp => {
+			document.getElementById("peerlist").innerHTML = JSON.stringify(resp, null, '\t');
+		})
 });
