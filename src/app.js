@@ -57,7 +57,7 @@ document.getElementById("addsubscriber").addEventListener("click", function(){
 })
 
 document.getElementById("friendkey").addEventListener("click", async () => {
-	let path = `/ipfs/QmRMtCEBe3t6nFfr4Ne9pqmQo4eVweuh9hv8NSoA59579m/subscribers`
+	let path = `/ipfs/${await gp.lookupProfileHash()}/subscribers`
 	let key = await gp.testDecryptAllSubscribers(path);
 	console.log(key)
 })
@@ -93,10 +93,10 @@ document.getElementById("publish").addEventListener("click", async () => {
 document.getElementById("lookup").addEventListener("click", async () => {
 	let hash = await gp.lookupProfileHash(document.getElementById("ipnskey").value);
 	document.getElementById("toplevelinfo").innerHTML = JSON.stringify(hash, null, '\t');
-	// gp.loadDirs(`/ipfs/${hash}`)
-	// 	.then(resp => {
-	// 		document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '\t');
-	// 	});
+	gp.loadDirs(`/ipfs/${hash}`)
+		.then(resp => {
+			document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '\t');
+		});
 });
 
 document.getElementById("connectpeer").addEventListener("click", async () => {
