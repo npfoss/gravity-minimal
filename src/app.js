@@ -9,7 +9,7 @@ const gp = new GravityProtocol();
 
 gp.getNodeInfo()
 	.then(info => {
-		document.getElementById("info").innerHTML = JSON.stringify(info, null, '\t');
+		document.getElementById("info").innerHTML = JSON.stringify(info, null, '  ');
 		console.log('public key: ' + gp.toStandardPublicKeyFormat(info.publicKey));
 	})
 
@@ -17,11 +17,11 @@ document.getElementById("refresh").addEventListener("click", function(){
 	// another example to try: /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
 	gp.loadDirs(document.getElementById("pathinput").value)
 		.then(resp => {
-			document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '\t');
+			document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '  ');
 		});
 	gp.getMyProfileHash()
 		.then(resp => {
-			document.getElementById("toplevelinfo").innerHTML = JSON.stringify(resp, null, '\t');
+			document.getElementById("toplevelinfo").innerHTML = JSON.stringify(resp, null, '  ');
 		})
 });
 
@@ -47,7 +47,7 @@ document.getElementById("encdec").addEventListener("click", async function(){
 
 document.getElementById("contactbutton").addEventListener("click", function(){
 	gp.getContacts().then(contacts => {
-		document.getElementById("contacts").innerHTML = JSON.stringify(contacts, null, '\t');
+		document.getElementById("contacts").innerHTML = JSON.stringify(contacts, null, '  ');
 	})
 })
 
@@ -92,10 +92,10 @@ document.getElementById("publish").addEventListener("click", async () => {
 
 document.getElementById("lookup").addEventListener("click", async () => {
 	let hash = await gp.lookupProfileHash(document.getElementById("ipnskey").value);
-	document.getElementById("toplevelinfo").innerHTML = JSON.stringify(hash, null, '\t');
+	document.getElementById("toplevelinfo").innerHTML = JSON.stringify(hash, null, '  ');
 	gp.loadDirs(`/ipfs/${hash}`)
 		.then(resp => {
-			document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '\t');
+			document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '  ');
 		});
 });
 
@@ -107,6 +107,12 @@ document.getElementById("connectpeer").addEventListener("click", async () => {
 document.getElementById("refreshpeers").addEventListener("click", async () => {
 	gp.getIpfsPeers()
 		.then(resp => {
-			document.getElementById("peerlist").innerHTML = JSON.stringify(resp, null, '\t');
+			document.getElementById("peerlist").innerHTML = JSON.stringify(resp, null, '  ');
 		})
 });
+
+document.getElementById("sendpost").addEventListener("click", async () => {
+	const group = document.getElementById("postgroupid").value;
+	let text = document.getElementById("posttext").value;
+	console.log(await gp.postTxt(group, text, undefined, ['testpost', 'firstpost', 'hashtag']));
+})
