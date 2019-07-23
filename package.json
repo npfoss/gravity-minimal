@@ -4,7 +4,7 @@
   "description": "Minimal client for interacting with the Gravity social network from the browser. Mostly for testing purposes.",
   "scripts": {
     "start": "http-server -c-1 -p 8080 public",
-    "build": "browserify src/app.js -o public/app.js -d --ignore-transform=babelify"
+    "build": "browserify src/app.js -o public/app.js -d"
   },
   "author": "Nate Foss",
   "devDependencies": {
