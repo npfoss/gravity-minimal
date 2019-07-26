@@ -119,4 +119,8 @@ document.getElementById("sendpost").addEventListener("click", async () => {
 	const group = document.getElementById("postgroupid").value;
 	let text = document.getElementById("posttext").value;
 	console.log(await gp.postTxt(group, text, undefined, ['testpost', 'firstpost', 'hashtag']));
-})
+});
+
+document.getElementById("autoconnect").addEventListener("click", async () => {
+	gp.autoconnectPeers();
+});
