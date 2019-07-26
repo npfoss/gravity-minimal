@@ -8,6 +8,8 @@
     <script type='module' src="app.js"></script>
   </head>
   <body id="body">
+    MAGIC LINK (c/p to share):
+    <input readonly id="magic" value="loading...">
     Node Info:
     <pre id="info">loading...</pre>
     <p>Profile hash: <span id="toplevelinfo">(click "load" below)</span></p>
@@ -23,12 +25,12 @@
     <input id="posttext" placeholder="message">
     <button id="sendpost">send!</button>
     <p></p>
+    <input id="magiclink" placeholder="paste magic link">
+    <button id="sendmagic">add as subscriber</button>
+    <!-- <button id="addsubscribing">subscribe</button> -->
+    <p></p>
     <input id="peeraddr" placeholder="peer multiaddr">
     <button id="connectpeer">connect</button>
-    <p></p>
-    <input id="peerpubkey" value="">
-    <button id="addsubscriber">add as subscriber</button>
-    <button id="addsubscribing">subscribe</button>
     <p></p>
     <button id="refreshpeers">refresh peers</button>
     <pre id="peerlist">click refresh...</pre>

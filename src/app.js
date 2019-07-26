@@ -51,9 +51,13 @@ document.getElementById("contactbutton").addEventListener("click", function(){
 	})
 })
 
-document.getElementById("addsubscriber").addEventListener("click", function(){
-	let pubkey = document.getElementById("peerpubkey").value;
-	gp.addSubscriber(pubkey);
+gp.getMagicLink().then(m => {
+	document.getElementById("magic").value = m;
+});
+
+document.getElementById("sendmagic").addEventListener("click", function(){
+	let m = document.getElementById("magiclink").value;
+	gp.addViaMagicLink(m);
 })
 
 document.getElementById("friendkey").addEventListener("click", async () => {
