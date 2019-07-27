@@ -95,9 +95,9 @@ document.getElementById("publish").addEventListener("click", async () => {
 });
 
 document.getElementById("lookup").addEventListener("click", async () => {
-	let hash = await gp.lookupProfileHash(document.getElementById("ipnskey").value);
-	document.getElementById("toplevelinfo").innerHTML = JSON.stringify(hash, null, '  ');
-	gp.loadDirs(`/ipfs/${hash}`)
+	let path = await gp.lookupProfileHash(document.getElementById("ipnskey").value);
+	document.getElementById("toplevelinfo").innerHTML = JSON.stringify(path, null, '  ');
+	gp.loadDirs(path)
 		.then(resp => {
 			document.getElementById("profile").innerHTML = JSON.stringify(resp, null, '  ');
 		});
