@@ -124,3 +124,11 @@ document.getElementById("sendpost").addEventListener("click", async () => {
 document.getElementById("autoconnect").addEventListener("click", async () => {
 	gp.autoconnectPeers();
 });
+
+document.getElementById("ipnsrefresh").addEventListener("click", async () => {
+	gp.getIpnsInfo()
+		.then(resp => {
+			document.getElementById("ipnsinfo").innerHTML = JSON.stringify(resp, null, '  ');
+		})
+});
+
