@@ -10,44 +10,67 @@
   <body id="body">
     MAGIC LINK (c/p to share):
     <input readonly id="magic" value="loading...">
+
+    <p></p>
+
     Node Info:
     <pre id="info">loading...</pre>
+
     <p>Profile hash: <span id="toplevelinfo">(click "load" below)</span></p>
+
     Path:
     <button id="publish">publish my profile!</button>
     <input id="ipnskey" placeholder="friend ID/pubkey">
     <button id="lookup">lookup profile hash</button>
+
     <p></p>
+
     <input id="pathinput" value="/">
     <button id="refresh">load</button>
     <pre id="profile">temp</pre>
+
     <input id="postgroupid" placeholder="group ID">
     <input id="posttext" placeholder="message">
     <button id="sendpost">send!</button>
+
     <p></p>
+
     <input id="magiclink" placeholder="paste magic link">
     <button id="sendmagic">add as subscriber</button>
     <!-- <button id="addsubscribing">subscribe</button> -->
+
     <p></p>
+
     <input id="peeraddr" placeholder="peer multiaddr">
     <button id="connectpeer">connect</button>
     <button id="autoconnect">auto-connect</button>
+
     <p></p>
+
     <button id="refreshpeers">refresh peers</button>
     <pre id="peerlist">click refresh...</pre>
+
     <button id="creategroup">create group</button>
+
     <p></p>
+
     <input id="biogroupid" value="" placeholder="group ID">
     <input id="biokey" value="" placeholder="bio key to set">
     <input id="bioval" value="" placeholder="value">
     <button id="setbio">Set bio</button>
+
     <p></p>
+
     <input id="nickkey" value="" placeholder="public key">
     <input id="nickname" value="" placeholder="nickname">
     <button id="setnick">Set nickname</button>
+
     <p></p>
+
     <button id="friendkey">get friend key</button>
+
     <p></p>
+
     Contacts:
     <button id="contactbutton">load contacts</button>
     <pre id="contacts"><i>click to refresh</i></pre>
