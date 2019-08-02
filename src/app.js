@@ -61,8 +61,8 @@ document.getElementById("sendmagic").addEventListener("click", function(){
 })
 
 document.getElementById("friendkey").addEventListener("click", async () => {
-	let path = `/ipfs/${await gp.lookupProfileHash()}/subscribers`
-	let key = await gp.testDecryptAllSubscribers(path);
+	let pk = document.getElementById("lookuppk").value;
+	let key = await gp.getFriendKey(pk);
 	console.log(key)
 })
 
