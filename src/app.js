@@ -132,3 +132,8 @@ document.getElementById("ipnsrefresh").addEventListener("click", async () => {
 		})
 });
 
+document.getElementById("getgroups").addEventListener("click", async () => {
+	let pk = document.getElementById("groupgetpk").value;
+	let groups = await gp.getGroupList(pk);
+	console.log(groups)
+})
