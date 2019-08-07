@@ -95,7 +95,7 @@ document.getElementById("publish").addEventListener("click", async () => {
 });
 
 document.getElementById("lookup").addEventListener("click", async () => {
-	let path = await gp.lookupProfileHash(document.getElementById("ipnskey").value);
+	let path = await gp.lookupProfileHash({publicKey: document.getElementById("ipnskey").value});
 	document.getElementById("toplevelinfo").innerHTML = JSON.stringify(path, null, '  ');
 	gp.loadDirs(path)
 		.then(resp => {
