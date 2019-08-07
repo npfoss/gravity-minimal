@@ -144,3 +144,10 @@ document.getElementById("getgroupinfo").addEventListener("click", async () => {
 	let info = await gp.getGroupInfo(name, pk);
 	console.log(info)
 });
+
+document.getElementById("getgroupposts").addEventListener("click", async () => {
+	let pk = document.getElementById("getpostpk").value || 'me';
+	let name = document.getElementById("postgroupname").value;
+	let links = await gp.getAllPostLinks(name, pk);
+	console.log(links)
+});
