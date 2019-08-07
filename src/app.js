@@ -136,4 +136,11 @@ document.getElementById("getgroups").addEventListener("click", async () => {
 	let pk = document.getElementById("groupgetpk").value;
 	let groups = await gp.getGroupList(pk);
 	console.log(groups)
-})
+});
+
+document.getElementById("getgroupinfo").addEventListener("click", async () => {
+	let pk = document.getElementById("groupinfopk").value || 'me';
+	let name = document.getElementById("groupinfoname").value;
+	let info = await gp.getGroupInfo(name, pk);
+	console.log(info)
+});
