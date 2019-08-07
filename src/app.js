@@ -149,5 +149,12 @@ document.getElementById("getgroupposts").addEventListener("click", async () => {
 	let pk = document.getElementById("getpostpk").value || 'me';
 	let name = document.getElementById("postgroupname").value;
 	let links = await gp.getAllPostLinks(name, pk);
+	let key = await gp.getGroupKey(name, pk)
 	console.log(links)
+	links.forEach(async l => {
+		console.log({
+			meta: await gp.readPostMetadata(key, l),
+			main: await gp.readPostData(key, l),
+		})
+	});
 });
