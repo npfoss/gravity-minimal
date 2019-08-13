@@ -169,3 +169,7 @@ document.getElementById("getgroupposts").addEventListener("click", async () => {
 		})
 	});
 });
+
+document.getElementById("convertid").addEventListener("click", async () => {
+	console.log(await gp.ipnsIdToPubkey(document.getElementById("ipnsid").value))
+});
