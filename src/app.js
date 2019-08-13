@@ -73,12 +73,14 @@ document.getElementById("creategroup").addEventListener("click", async () => {
 })
 
 document.getElementById("setnick").addEventListener("click", async () => {
+	// sets the nickname for that person in our first group
 	let groups = await gp.getGroupList(await gp.getPublicKey());
-	console.log(await gp.getGroupInfo(groups[0]))
+	let mypk = await gp.getPublicKey();
+	console.log(await gp.getGroupInfo(mypk, groups[0]))
 	let nicks = {};
 	nicks[document.getElementById("nickkey").value] = document.getElementById("nickname").value;
 	await gp.setNicknames(nicks, groups[0])
-	console.log(await gp.getGroupInfo(groups[0]))
+	console.log(await gp.getGroupInfo(mypk, groups[0]))
 });
 
 document.getElementById("setbio").addEventListener("click", async () => {
