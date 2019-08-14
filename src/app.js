@@ -89,11 +89,11 @@ document.getElementById("setnick").addEventListener("click", async () => {
 
 document.getElementById("setbio").addEventListener("click", async () => {
 	const group = document.getElementById("biogroupid").value;
-	console.log(await gp.getBio(group))
+	console.log(await gp.getBio(await gp.getPublicKey(), group))
 	let bio = {};
 	bio[document.getElementById("biokey").value] = document.getElementById("bioval").value;
 	await gp.setBio(group, bio);
-	console.log(await gp.getBio(group))
+	console.log(await gp.getBio(await gp.getPublicKey(), group))
 });
 
 document.getElementById("publish").addEventListener("click", async () => {
