@@ -8,7 +8,7 @@ const gp = new GravityProtocol();
 
 
 gp.ready
-	.then(() => getNodeInfo())
+	.then(() => gp.getNodeInfo())
 	.then(info => {
 		document.getElementById("info").innerHTML = JSON.stringify(info, null, '  ');
 		console.log('public key: ' + info.publicKey);
