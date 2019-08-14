@@ -7,11 +7,14 @@ const GravityProtocol = require('../../gravity-protocol'); // two ..s because it
 const gp = new GravityProtocol();
 
 
-gp.getNodeInfo()
+gp.ready
+	.then(() => getNodeInfo())
 	.then(info => {
 		document.getElementById("info").innerHTML = JSON.stringify(info, null, '  ');
 		console.log('public key: ' + info.publicKey);
 	})
+
+
 
 document.getElementById("refresh").addEventListener("click", function(){
 	// another example to try: /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
@@ -51,7 +54,8 @@ document.getElementById("contactbutton").addEventListener("click", function(){
 	})
 })
 
-gp.getMagicLink().then(m => {
+gp.ready.then(async () => {
+	const m = await gp.getMagicLink();
 	document.getElementById("magic").value = m;
 });
 
