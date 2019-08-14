@@ -93,7 +93,7 @@ document.getElementById("setbio").addEventListener("click", async () => {
 });
 
 document.getElementById("publish").addEventListener("click", async () => {
-	await gp.publishProfile();
+	await gp.publishProfile(undefined, document.getElementById("pubdata").value);
 });
 
 document.getElementById("lookup").addEventListener("click", async () => {
@@ -172,4 +172,9 @@ document.getElementById("getgroupposts").addEventListener("click", async () => {
 
 document.getElementById("convertid").addEventListener("click", async () => {
 	console.log(await gp.ipnsIdToPubkey(document.getElementById("ipnsid").value))
+});
+
+gp.on('new-record', async (args) => {
+	console.log('event!')
+	console.log(args);
 });
