@@ -132,10 +132,8 @@ document.getElementById("autoconnect").addEventListener("click", async () => {
 });
 
 document.getElementById("ipnsrefresh").addEventListener("click", async () => {
-	gp.getIpnsInfo()
-		.then(resp => {
-			document.getElementById("ipnsinfo").innerHTML = JSON.stringify(resp, null, '  ');
-		})
+	const resp = gp.getIpnsInfo();
+	document.getElementById("ipnsinfo").innerHTML = JSON.stringify(resp, null, '  ');
 });
 
 document.getElementById("getgroups").addEventListener("click", async () => {
