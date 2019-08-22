@@ -2,6 +2,7 @@
 
 // this is the wrong place to import from, replace with npm import later (TODO)
 const GravityProtocol = require('../../gravity-protocol'); // two ..s because it ends up in public/
+const Cookies = require('js-cookie');
 
 
 const gp = new GravityProtocol();
