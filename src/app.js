@@ -9,6 +9,10 @@ const Cookies = require('js-cookie');
 // Cookies.remove('gravity-device-key')
 
 let deviceKey = Cookies.get('gravity-device-key');
+
+const options = deviceKey === undefined ? {} : { deviceKey: deviceKey }
+const gp = new GravityProtocol(options);
+
 if (deviceKey === undefined) {
 	gp.ready
 		.then(async () => {
@@ -17,10 +21,6 @@ if (deviceKey === undefined) {
 			Cookies.set('gravity-device-key', gp.to_base64(deviceKey), { expires: 365 });
 	  });
 }
-
-const options = deviceKey === undefined ? {} : { deviceKey: deviceKey }
-const gp = new GravityProtocol(options);
-
 
 /* cookie examples
 
