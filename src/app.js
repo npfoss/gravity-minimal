@@ -5,15 +5,48 @@ const GravityProtocol = require('../../gravity-protocol'); // two ..s because it
 const Cookies = require('js-cookie');
 
 
-const gp = new GravityProtocol();
+// for starting over. be careful.
+// Cookies.remove('gravity-device-key')
+
+let deviceKey = Cookies.get('gravity-device-key');
+if (deviceKey === undefined) {
+	gp.ready
+		.then(async () => {
+			deviceKey = await gp.resetMasterKey();
+			gp.loadDeviceKey(deviceKey)
+			Cookies.set('gravity-device-key', gp.to_base64(deviceKey), { expires: 365 });
+	  });
+}
+
+const options = deviceKey === undefined ? {} : { deviceKey: deviceKey }
+const gp = new GravityProtocol(options);
+
+
+/* cookie examples
+
+    use with caution
+    this.setMasterKey = (newkey) => {
+      Cookies.set('gravity-master-key', newkey, { expires: 365 });
+      // , { secure: true }); // for https only
+      // TODO: store somewhere better than in a cookie.
+      //  (only store a device key, keep master key enc in profile only)
+    };
+
+    const cookie = Cookies.get('gravity-master-key');
+    if (cookie === undefined) {
+      throw new Error('No master key');
+    }
+    return sodium.from_base64(cookie);
+
+*/
 
 
 gp.ready
-	.then(() => gp.getNodeInfo())
-	.then(info => {
+	.then(async () => {
+		const info = await gp.getNodeInfo()
 		document.getElementById("info").innerHTML = JSON.stringify(info, null, '  ');
 		console.log('public key: ' + info.publicKey);
-	})
+	});
 
 
 
@@ -30,20 +63,29 @@ document.getElementById("refresh").addEventListener("click", function(){
 });
 
 // document.getElementById("keygen").addEventListener("click", function(){
-// 	gp.resetMasterKey();
+	/* testing device key stuff
+	const dk = await gp.resetMasterKey();
+	console.log(dk)
+	console.log(await gp.getDeviceKeyInfo());
+	await gp.setDeviceKeyDescription(dk, 'test desc')
+	console.log(await gp.getDeviceKeyInfo());
+	const dk2 = await gp.createNewDeviceKey('number 2');
+	console.log(dk2)
+	console.log(await gp.getDeviceKeyInfo());
+	*/
 // })
 
 document.getElementById("getkey").addEventListener("click", async function(){
-	console.log(await gp.getMasterKey());
+	console.log(deviceKey);
 })
 
 document.getElementById("encdec").addEventListener("click", async function(){
 	let m = document.getElementById("message").value;
 	console.log("message: " + m)
-	let c = await gp.encrypt(await gp.getMasterKey(), m);
+	let c = await gp.encrypt(gp.from_base64(deviceKey), m);
 	console.log("ciphertext: ");
 	console.log(c)
-	let r = await gp.decrypt(await gp.getMasterKey(), c)
+	let r = await gp.decrypt(gp.from_base64(deviceKey), c)
 	console.log("decrypted: ")
 	console.log(r)
 	console.log('matching? ' + (m === r))
