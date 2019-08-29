@@ -123,11 +123,11 @@ document.getElementById("setnick").addEventListener("click", async () => {
 	// sets the nickname for that person in our first group
 	let groups = await gp.getGroupList(await gp.getPublicKey());
 	let mypk = await gp.getPublicKey();
-	console.log(await gp.getGroupInfo(mypk, groups[0]))
+	console.log(await gp.getGroupInfo(groups[0], mypk))
 	let nicks = {};
 	nicks[document.getElementById("nickkey").value] = document.getElementById("nickname").value;
-	await gp.setNicknames(nicks, groups[0])
-	console.log(await gp.getGroupInfo(mypk, groups[0]))
+	await gp.setNicknames(groups[0], nicks)
+	console.log(await gp.getGroupInfo(groups[0], mypk))
 });
 
 document.getElementById("setbio").addEventListener("click", async () => {
@@ -194,7 +194,7 @@ document.getElementById("getgroupinfo").addEventListener("click", async () => {
 		pk = await gp.getPublicKey();
 	}
 	let name = document.getElementById("groupinfoname").value;
-	let info = await gp.getGroupInfo(pk, name);
+	let info = await gp.getGroupInfo(name, pk);
 	console.log(info)
 });
 
