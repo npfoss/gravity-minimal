@@ -14,12 +14,9 @@ const options = deviceKey === undefined ? {} : { deviceKey: deviceKey }
 const gp = new GravityProtocol(options);
 
 if (deviceKey === undefined) {
-	gp.ready
-		.then(async () => {
-			deviceKey = await gp.resetMasterKey();
-			gp.loadDeviceKey(deviceKey)
-			Cookies.set('gravity-device-key', gp.to_base64(deviceKey), { expires: 365 });
-	  });
+	gp.ready.then(() => {
+		Cookies.set('gravity-device-key', gp.to_base64(gp.deviceKey), { expires: 365 });
+	});
 }
 
 /* cookie examples
@@ -43,12 +40,19 @@ if (deviceKey === undefined) {
 
 gp.ready
 	.then(async () => {
-		const info = await gp.getNodeInfo()
+		const info = await gp.getNodeInfo();
 		document.getElementById("info").innerHTML = JSON.stringify(info, null, '  ');
+		const identity = {id: await gp.getIpnsId(), publicKey: await gp.getPublicKey()};
+		document.getElementById("info2").innerHTML = JSON.stringify(identity, null, '  ');
 		console.log('public key: ' + info.publicKey);
 	});
 
 
+document.getElementById("nuke").addEventListener("click", async function(){
+	console.warn('nuking');
+	deviceKey = await gp.deleteAllAndCreateNewIdentity();
+	Cookies.set('gravity-device-key', gp.to_base64(deviceKey), { expires: 365 });
+});
 
 document.getElementById("refresh").addEventListener("click", function(){
 	// another example to try: /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
