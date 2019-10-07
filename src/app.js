@@ -40,7 +40,7 @@ if (deviceKey === undefined) {
 
 gp.ready
 	.then(async () => {
-		const info = await gp.getNodeInfo();
+		const info = await gp.getIpfsNodeInfo();
 		document.getElementById("info").innerHTML = JSON.stringify(info, null, '  ');
 		const identity = {id: await gp.getIpnsId(), publicKey: await gp.getPublicKey()};
 		document.getElementById("info2").innerHTML = JSON.stringify(identity, null, '  ');
