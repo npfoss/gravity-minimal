@@ -42,7 +42,7 @@ gp.ready
 	.then(async () => {
 		const info = await gp.getIpfsNodeInfo();
 		document.getElementById("info").innerHTML = JSON.stringify(info, null, '  ');
-		const identity = {id: await gp.getIpnsId(), publicKey: await gp.getPublicKey()};
+		const identity = {id: gp.getIpnsId(), publicKey: gp.getPublicKey()};
 		document.getElementById("info2").innerHTML = JSON.stringify(identity, null, '  ');
 		console.log('public key: ' + info.publicKey);
 	});
@@ -125,8 +125,8 @@ document.getElementById("creategroup").addEventListener("click", async () => {
 
 document.getElementById("setnick").addEventListener("click", async () => {
 	// sets the nickname for that person in our first group
-	let groups = await gp.getGroupList(await gp.getPublicKey());
-	let mypk = await gp.getPublicKey();
+	let groups = await gp.getGroupList(gp.getPublicKey());
+	let mypk = gp.getPublicKey();
 	console.log(await gp.getGroupInfo(groups[0], mypk))
 	let nicks = {};
 	nicks[document.getElementById("nickkey").value] = document.getElementById("nickname").value;
@@ -136,11 +136,11 @@ document.getElementById("setnick").addEventListener("click", async () => {
 
 document.getElementById("setbio").addEventListener("click", async () => {
 	const group = document.getElementById("biogroupid").value;
-	console.log(await gp.getBio(await gp.getPublicKey(), group))
+	console.log(await gp.getBio(gp.getPublicKey(), group))
 	let bio = {};
 	bio[document.getElementById("biokey").value] = document.getElementById("bioval").value;
 	await gp.setBio(group, bio);
-	console.log(await gp.getBio(await gp.getPublicKey(), group))
+	console.log(await gp.getBio(gp.getPublicKey(), group))
 });
 
 document.getElementById("publish").addEventListener("click", async () => {
@@ -186,7 +186,7 @@ document.getElementById("ipnsrefresh").addEventListener("click", async () => {
 document.getElementById("getgroups").addEventListener("click", async () => {
 	let pk = document.getElementById("groupgetpk").value;
 	if (!pk || pk === 'me'){
-		pk = await gp.getPublicKey();
+		pk = gp.getPublicKey();
 	}
 	let groups = await gp.getGroupList(pk);
 	console.log(groups)
@@ -195,7 +195,7 @@ document.getElementById("getgroups").addEventListener("click", async () => {
 document.getElementById("getgroupinfo").addEventListener("click", async () => {
 	let pk = document.getElementById("groupinfopk").value;
 	if (!pk || pk === 'me'){
-		pk = await gp.getPublicKey();
+		pk = gp.getPublicKey();
 	}
 	let name = document.getElementById("groupinfoname").value;
 	let info = await gp.getGroupInfo(name, pk);
@@ -205,7 +205,7 @@ document.getElementById("getgroupinfo").addEventListener("click", async () => {
 document.getElementById("getgroupposts").addEventListener("click", async () => {
 	let pk = document.getElementById("getpostpk").value;
 	if (!pk || pk === 'me'){
-		pk = await gp.getPublicKey();
+		pk = gp.getPublicKey();
 	}
 	let name = document.getElementById("postgroupname").value;
 	let links = await gp.getAllPostLinks(pk, name);
