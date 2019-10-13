@@ -44,7 +44,7 @@ gp.ready
 		document.getElementById("info").innerHTML = JSON.stringify(info, null, '  ');
 		const identity = {id: gp.getIpnsId(), publicKey: gp.getPublicKey()};
 		document.getElementById("info2").innerHTML = JSON.stringify(identity, null, '  ');
-		console.log('public key: ' + info.publicKey);
+		// console.log('public key: ' + info.publicKey);
 	});
 
 
@@ -190,6 +190,12 @@ document.getElementById("getgroups").addEventListener("click", async () => {
 	}
 	let groups = await gp.getGroupList(pk);
 	console.log(groups)
+});
+
+document.getElementById("getgroupmembers").addEventListener("click", async () => {
+	let salt = document.getElementById("membergetid").value;
+	let memberStatus = await gp.getGroupMembership(salt);
+	console.log(memberStatus);
 });
 
 document.getElementById("getgroupinfo").addEventListener("click", async () => {
