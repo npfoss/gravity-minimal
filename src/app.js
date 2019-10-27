@@ -1,7 +1,7 @@
 'use strict'
 
-// this is the wrong place to import from, replace with npm import later (TODO)
-const GravityProtocol = require('../../gravity-protocol'); // two ..s because it ends up in public/
+// const GravityProtocol = require('../../gravity-protocol'); // two ..s because it ends up in public/
+const GravityProtocol = require('gravity-protocol');
 const Cookies = require('js-cookie');
 
 
