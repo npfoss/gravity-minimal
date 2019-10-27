@@ -1,11 +1,11 @@
 # gravity-minimal
 
-Minimal client for interacting with the Gravity social network from the browser. Mostly for testing purposes.
+Minimal example app for interacting with the Gravity social network.
+Runs a full-fledged node in the network, all inside your browser.
+
+Exists primarily for testing purposes and as a working example of how to use the [Gravity protocol](https://github.com/npfoss/gravity-protocol).
 
 Source code is in `src/app.js`, `public/index.html`, and `public/app.css`.
-
-
-*NOTE*: for now, requires [`gravity-protocol`](https://github.com/npfoss/gravity-protocol/) in sibling directory because that isn't a stable npm package yet.
 
 # install
 
