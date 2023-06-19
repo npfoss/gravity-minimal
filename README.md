@@ -1,3 +1,5 @@
+Note: all the peering servers have stopped running, so this no longer works unless you run your own. It's currently unmaintained, but still interesting. A new iteration of similar ideas is [Dynamic ID](https://dynamicid.org), which is actively under development.
+
 # gravity-minimal
 
 Minimal example app for interacting with the Gravity social network.
